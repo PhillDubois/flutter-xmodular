@@ -1,0 +1,84 @@
+{
+  "name": "flutter-xmodular",
+  "displayName": "Flutter XModular",
+  "description": "Flutter project architecture with modular and mobx",
+  "version": "0.0.1",
+  "publisher": "PhilippeDubois",
+  "engines": {
+    "vscode": "^1.43.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PhillDubois/flutter-xmodular"
+  },
+  "homepage": "https://github.com/PhillDubois/flutter-xmodular",
+  "categories": [
+    "Snippets",
+    "Programming Languages"
+  ],
+  "icon": "assets/logo.png",
+  "keywords": [
+    "dart",
+    "flutter",
+    "mobx",
+    "modular"
+  ],
+  "activationEvents": [
+    "onCommand:extension.initializeProject",
+    "onCommand:extension.createModule",
+    "workspaceContains:**/pubspec.yaml"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.initializeProject",
+        "title": "XModular: Initialize project"
+      },
+      {
+        "command": "extension.createModule",
+        "title": "XModular: Create Module"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "extension.createModule",
+          "group": "xmodular@1",
+          "when": "explorerResourceIsFolder"
+        }
+      ]
+    },
+    "snippets": [
+      {
+        "language": "dart",
+        "path": "./snippets/snippets.json"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.1.1",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.11.7",
+    "@types/vscode": "^1.43.0",
+    "glob": "^7.1.5",
+    "mocha": "^6.2.2",
+    "typescript": "^3.6.4",
+    "tslint": "^5.20.0",
+    "vscode-test": "^1.2.2"
+  },
+  "dependencies": {
+    "@types/fs-extra": "^8.1.0",
+    "@types/js-yaml": "^3.12.3",
+    "change-case": "^4.1.1",
+    "fs-extra": "^9.0.0",
+    "js-yaml": "^3.13.1"
+  }
+}

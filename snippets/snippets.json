@@ -1,0 +1,203 @@
+{
+  "Freezed Complete Json Class": {
+    "scope": "dart",
+    "prefix": "fjdataclass",
+    "body": [
+      "import 'package:flutter/foundation.dart';",
+      "import 'package:json_annotation/json_annotation.dart';\n",
+      "part '${1/(^[A-Z][a-z]*|[a-z])([A-Z])?/${1:/downcase}${2:+_}${2:/downcase}/g}.g.dart';",
+      "part '${1/(^[A-Z][a-z]*|[a-z])([A-Z])?/${1:/downcase}${2:+_}${2:/downcase}/g}.freezed.dart';\n",
+      "@immutable",
+      "abstract class ${1:DataClass} with _$${1:DataClass}{",
+      "  const factory ${1:DataClass}({${2}}) = _${1:DataClass};",
+      "factory ${1:DataClass}.fromJson(Map<String, dynamic> json) => _$${1:DataClass}FromJson(json);",
+      "}"
+    ],
+    "description": "Freezed Complete Json Class"
+  },
+  "Freezed Data Class": {
+    "scope": "dart",
+    "prefix": "fdataclass",
+    "body": [
+      "@immutable",
+      "abstract class ${1:DataClass} with _$${1:DataClass}{",
+      "  const factory ${1:DataClass}(${2}) = _${1:DataClass};",
+      "}"
+    ],
+    "description": "Freezed Data Class"
+  },
+  "Freezed Nested Sealed Classes": {
+    "scope": "dart",
+    "prefix": "fsealnested",
+    "body": [
+      "import 'package:flutter/foundation.dart';\n",
+      "part '${1/(^[A-Z][a-z]*|[a-z])([A-Z])?/${1:/downcase}${2:+_}${2:/downcase}/g}.freezed.dart';\n",
+      "@immutable",
+      "abstract class ${1:Union} with _$${1:Union}{",
+      "  const factory ${1:Union}.${2/(.*)/${1:/downcase}/}(${3}) = _${2};",
+      "}"
+    ],
+    "description": "Freezed Union"
+  },
+  "Freezed Nested Class": {
+    "scope": "dart",
+    "prefix": "fnested",
+    "body": [
+      "  const factory ${1:Union}.${2/(.*)/${1:/downcase}/}(${3}) = _${2};"
+    ],
+    "description": "Freezed Union"
+  },
+  "JsonAttribute Data Sealed Classes": {
+    "scope": "dart",
+    "prefix": "jatt",
+    "body": [
+      "@JsonKey(name: '${2/([a-z]*)(([A-Z])+([a-z]+))?/$1${2:+_}${2:/downcase}/g}') ${1:String} ${2},"
+    ],
+    "description": "jatt"
+  },
+  "Mobx Presenter": {
+    "scope": "dart",
+    "prefix": "mobxpresenter",
+    "body": [
+      "import 'package:mobx/mobx.dart';\n",
+      "part '${1/([A-Z][a-z]+)/${1:/downcase}_/g}$0presenter.g.dart';\n",
+      "class  ${1:Name}Presenter = _${1:Name}Base with _$${1:Name}Presenter;\n",
+      "abstract class _${1:Name}Base with Store {}"
+    ],
+    "description": "Mobx Presenter"
+  },
+  "Mobx Page": {
+    "scope": "dart",
+    "prefix": "mobxpage",
+    "body": [
+      "import 'package:flutter/material.dart';\n",
+      "import '${1/(^[A-Z][a-z]*|[a-z])([A-Z])?/${1:/downcase}${2:+_}${2:/downcase}/g}_module.dart';",
+      "import '${1/(^[A-Z][a-z]*|[a-z])([A-Z])?/${1:/downcase}${2:+_}${2:/downcase}/g}_presenter.dart';\n",
+      "class ${1:Name} extends StatefulWidget {",
+      "\tconst ${1:Name}({Key key}) : super(key: key);\n",
+      "\t@override",
+      "\t_${1:Name}State createState() => _${1:Name}State();",
+      "}\n",
+      "class _${1:Name}State extends State<${1:Name}> {",
+      "${1:Name}Presenter _presenter;\n",
+      "\t@override",
+      "\tvoid didChangeDependencies() {",
+      "\t\t_presenter ??= ${1:Name}Module.to.getBloc<${1:Name}Presenter>();",
+      "\t\tsuper.didChangeDependencies();",
+      "\t}",
+      "\t@override",
+      "\tWidget build(BuildContext context) {",
+      "\t\treturn Scaffold(",
+      "\t\t\tappBar: AppBar(",
+      "\t\t\t\ttitle: Text('${1:Name}'),",
+      "\t\t\t),",
+      "\t\t\tbody: Column(",
+      "\t\t\t\tchildren: <Widget>[],",
+      "\t\t\t),",
+      "\t\t);",
+      "\t}\n",
+      "}"
+    ],
+    "description": "Mobx Page"
+  },
+  "Mobx Module": {
+    "scope": "dart",
+    "prefix": "mobxmodule",
+    "body": [
+      "import 'package:bloc_pattern/bloc_pattern.dart';",
+      "import 'package:flutter/material.dart';\n",
+      "import '${1/(^[A-Z][a-z]*|[a-z])([A-Z])?/${1:/downcase}${2:+_}${2:/downcase}/g}.dart';",
+      "import '${1/(^[A-Z][a-z]*|[a-z])([A-Z])?/${1:/downcase}${2:+_}${2:/downcase}/g}_presenter.dart';\n",
+      "class ${1:Name}Module extends ModuleWidget {",
+      "\t@override",
+      "\tList<Bloc> get blocs => [",
+      "\t\t\tBloc((i) => ${1:Name}Presenter()),",
+      "\t\t];\n",
+      "\t@override",
+      "\tList<Dependency> get dependencies => [];\n",
+      "\t@override",
+      "\tWidget get view => ${1:Name}();\n",
+      "\tstatic Inject get to => Inject<${1:Name}Module>.of();",
+      "}"
+    ],
+    "description": "Mobx Module"
+  },
+  "Freezed State Nested Sealed Classes": {
+    "scope": "dart",
+    "prefix": "fstate",
+    "body": [
+      "import 'package:flutter/foundation.dart';\n",
+      "part '${1/(^[A-Z][a-z]*|[a-z])([A-Z])?/${1:/downcase}${2:+_}${2:/downcase}/g}.freezed.dart';\n",
+      "@immutable",
+      "abstract class ${1:Union} with _$${1:Union}{",
+      "\tconst factory ${1:Union}() = Data;",
+      "\tconst factory ${1:Union}.loading() = _Loading;",
+      "\tconst factory ${1:Union}.loaded() = _Loaded;",
+      "\tconst factory ${1:Union}.error() = _Error;",
+      "}"
+    ],
+    "description": "Freezed State Nested Sealed Classes"
+  },
+  "Modular Presenter": {
+    "scope": "dart",
+    "prefix": "modpresenter",
+    "body": [
+      "import 'package:mobx/mobx.dart';\n",
+      "part '${1/([A-Z][a-z]+)/${1:/downcase}_/g}$0presenter.g.dart';\n",
+      "class  ${1:Name}Presenter = _${1:Name}Base with _$${1:Name}Presenter;\n",
+      "abstract class _${1:Name}Base with Store {}"
+    ],
+    "description": "Modular Presenter"
+  },
+  "Modular Page": {
+    "scope": "dart",
+    "prefix": "modpage",
+    "body": [
+      "import 'package:flutter/material.dart';\n",
+      "import '../../../core/page_state.dart';\n",
+      "import '${1/(^[A-Z][a-z]*|[a-z])([A-Z])?/${1:/downcase}${2:+_}${2:/downcase}/g}_module.dart';",
+      "import '${1/(^[A-Z][a-z]*|[a-z])([A-Z])?/${1:/downcase}${2:+_}${2:/downcase}/g}_presenter.dart';\n",
+      "class ${1:Name}Page extends StatefulWidget {",
+      "\tstatic final String route = \"/\";",
+      "\tconst ${1:Name}Page({Key key}) : super(key: key);\n",
+      "\t@override",
+      "\t_${1:Name}PageState createState() => _${1:Name}PageState();",
+      "}\n",
+      "class _${1:Name}PageState extends PageState<${1:Name}Page,${1:Name}Presenter> {",
+      "\t@override",
+      "\tWidget build(BuildContext context) {",
+      "\t\treturn Scaffold(",
+      "\t\t\tappBar: AppBar(",
+      "\t\t\t\ttitle: Text('${1:Name}'),",
+      "\t\t\t),",
+      "\t\t\tbody: Column(",
+      "\t\t\t\tchildren: <Widget>[],",
+      "\t\t\t),",
+      "\t\t);",
+      "\t}\n",
+      "}"
+    ],
+    "description": "Modular Page"
+  },
+  "Modular Module": {
+    "scope": "dart",
+    "prefix": "modchildmodule",
+    "body": [
+      "import 'package:flutter_modular/flutter_modular.dart';\n",
+      "import '${1/(^[A-Z][a-z]*|[a-z])([A-Z])?/${1:/downcase}${2:+_}${2:/downcase}/g}_page.dart';",
+      "import '${1/(^[A-Z][a-z]*|[a-z])([A-Z])?/${1:/downcase}${2:+_}${2:/downcase}/g}_presenter.dart';\n",
+      "class ${1:Name}Module extends ChildModule {",
+      "\t@override",
+      "\tList<Bind> get binds => [",
+      "\t\t\tBind((i) => ${1:Name}Presenter()),",
+      "\t\t];\n",
+      "\t@override",
+      "\tList<Router> get routers => [",
+      "\t\t\tRouter(LoginPage.route, child: (_, args) => ${1:Name}Page()),",
+      "\t\t];\n",
+      "\tstatic Inject get to => Inject<${1:Name}Module>.of();",
+      "}"
+    ],
+    "description": "Modular Module"
+  }
+}
