@@ -2,7 +2,7 @@
   "name": "flutter-xmodular",
   "displayName": "Flutter XModular",
   "description": "Flutter project architecture with modular and mobx",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher": "PhilippeDubois",
   "engines": {
     "vscode": "^1.43.0"
@@ -26,6 +26,7 @@
   "activationEvents": [
     "onCommand:extension.initializeProject",
     "onCommand:extension.createModule",
+    "onCommand:extension.runXModularScript",
     "workspaceContains:**/pubspec.yaml"
   ],
   "main": "./out/extension.js",
@@ -38,6 +39,10 @@
       {
         "command": "extension.createModule",
         "title": "XModular: Create Module"
+      },
+      {
+        "command": "extension.runXModularScript",
+        "title": "XModular: Run Script"
       }
     ],
     "menus": {

@@ -10,7 +10,7 @@ import { FullModuleTemplate } from "./templates/full_module.template";
 import { CoreTemplate } from "./templates/core.template";
 
 export class Core {
-  private pubspecLib = new PubspecLib();
+  public pubspecLib = new PubspecLib();
   constructor() {}
 
   // ┍━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┑
@@ -110,6 +110,23 @@ export class Core {
       `${moduleBasePath}\\${moduleNameSnakeCase}\\${moduleNameSnakeCase}_page.dart`,
       homeModule.getPageTemplate()
     );
+  }
+
+  runScript(this: Core, scriptName: string) {
+    let script = this.pubspecLib.getScript(scriptName);
+    let terminals = vscode.window.terminals;
+    if (terminals.length === 0) {
+      let terminal = vscode.window.createTerminal();
+      terminal.show();
+      terminal.sendText(script);
+    } else {
+      for (const terminal of terminals) {
+        if (terminal.name !== "dart") {
+          terminal.show();
+          terminal.sendText(script);
+        }
+      }
+    }
   }
 
   // ┍━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┑

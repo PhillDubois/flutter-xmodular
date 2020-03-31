@@ -28,6 +28,13 @@ export class PubspecLib {
     "uses-material-design": true
   };
 
+  private scripts = {
+    build: "flutter pub run build_runner build --delete-conflicting-outputs",
+    watch: "flutter pub run build_runner watch --delete-conflicting-outputs",
+    run_all: "flutter run -d all",
+    run_chrome: "flutter run -d chrome"
+  };
+
   public _projectName?: string;
 
   // ------------------------------------------------------
@@ -57,7 +64,8 @@ export class PubspecLib {
       environment: this.environement,
       dependencies: this.dependencies,
       dev_dependencies: this.devDependencies,
-      flutter: this.flutter
+      flutter: this.flutter,
+      scripts: this.scripts
     };
 
     let yamlStr = yaml.safeDump(newPubspecData);
@@ -83,5 +91,16 @@ export class PubspecLib {
     let data = yaml.safeLoad(pubspecContents);
 
     return data.scripts[script];
+  }
+
+  listScripts(): string[] {
+    let pubspecContents = fs.readFileSync(this.pubspecPath, "utf8");
+    let data = yaml.safeLoad(pubspecContents);
+
+    if (!data.scripts) {
+      return [];
+    }
+
+    return Object.keys(data.scripts);
   }
 }

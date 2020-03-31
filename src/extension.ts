@@ -37,6 +37,9 @@ export function activate(context: vscode.ExtensionContext) {
       } else {
         console.log("No folder selected");
       }
+
+      // PROMPT
+      // ---------------
       let valuePlaceholder = `${moduleRelativePath}<<name>>`;
       const options: vscode.InputBoxOptions = {
         prompt: "Module Name",
@@ -45,6 +48,8 @@ export function activate(context: vscode.ExtensionContext) {
       };
       let modulePath = await vscode.window.showInputBox(options);
 
+      // Handle Input and create module
+      // ---------------
       if (modulePath && modulePath.trim() !== "") {
         // remove possible spaces
         modulePath = modulePath.trim();
@@ -81,8 +86,41 @@ export function activate(context: vscode.ExtensionContext) {
     }
   );
 
+  let runScript = vscode.commands.registerCommand(
+    "extension.runXModularScript",
+    async () => {
+      try {
+        let core = new Core();
+        let scripts: string[] = core.pubspecLib.listScripts();
+        if (scripts.length === 0) {
+          vscode.window.showWarningMessage("No scripts found");
+          return;
+        }
+
+        // PROMPT
+        // ---------------
+        const promptConfirmation: vscode.QuickPickOptions = {
+          placeHolder: "Wich script?",
+          canPickMany: false
+        };
+
+        let option: string | undefined = await vscode.window.showQuickPick(
+          scripts,
+          promptConfirmation
+        );
+
+        if (option) {
+          core.runScript(option);
+        }
+      } catch (error) {
+        let debug = 0;
+      }
+    }
+  );
+
   context.subscriptions.push(initializeProject);
   context.subscriptions.push(createModule);
+  context.subscriptions.push(runScript);
 }
 
 export function deactivate() {}
