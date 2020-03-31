@@ -1,7 +1,7 @@
 import * as vscode from "vscode";
 import * as fs from "fs-extra";
 import * as path from "path";
-import { snakeCase } from "change-case";
+import { snakeCase, pascalCase } from "change-case";
 
 import { getMainTemplate } from "./templates/main.template";
 import { PubspecLib } from "./libs/pubspec_lib";
@@ -86,7 +86,7 @@ export class Core {
   createModule(
     this: Core,
     moduleName: string,
-    moduleRoute: string = `/${moduleName}`,
+    moduleRoute: string = `/${pascalCase(moduleName)}`,
     moduleBasePath: string = this.modulesPath
   ) {
     let homeModule = new FullModuleTemplate(

@@ -54,7 +54,7 @@ import '${this.moduleNameSnake}_page.dart';
 import '${this.moduleNameSnake}_presenter.dart';
 
 class ${this.moduleNamePascal}Module extends ChildModule {
-    static String route = "${this.moduleNamePascal}";
+    static String route = "${this.moduleRoute}";
     @override
     List<Bind> get binds => [
         Bind((i) => ${this.moduleNamePascal}Presenter()),
