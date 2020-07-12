@@ -73,7 +73,6 @@
     "@types/mocha": "^5.2.7",
     "@types/node": "^12.11.7",
     "@types/vscode": "^1.43.0",
-    "electron": "^9.1.0",
     "glob": "^7.1.5",
     "mocha": "^6.2.2",
     "tslint": "^5.20.0",
