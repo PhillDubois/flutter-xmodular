@@ -9,7 +9,7 @@ export class PubspecLib {
     flutter_mobx: "^1.1.0",
     mobx: "^1.1.1",
     flutter_modular: "^1.0.0",
-    flutter: { sdk: "flutter" }
+    flutter: { sdk: "flutter" },
   };
 
   private devDependencies = {
@@ -17,22 +17,22 @@ export class PubspecLib {
     mobx_codegen: "^1.0.3",
     build_runner: "^1.8.0",
     freezed: "^0.10.4",
-    flutter_test: { sdk: "flutter" }
+    flutter_test: { sdk: "flutter" },
   };
 
   private environement = {
-    sdk: ">=2.6.0 <3.0.0"
+    sdk: ">=2.6.0 <3.0.0",
   };
 
   private flutter = {
-    "uses-material-design": true
+    "uses-material-design": true,
   };
 
   private scripts = {
     build: "flutter pub run build_runner build --delete-conflicting-outputs",
     watch: "flutter pub run build_runner watch --delete-conflicting-outputs",
     run_all: "flutter run -d all",
-    run_chrome: "flutter run -d chrome"
+    run_chrome: "flutter run -d chrome",
   };
 
   public _projectName?: string;
@@ -46,7 +46,7 @@ export class PubspecLib {
   }
 
   private get pubspecPath(): string {
-    return path.join(this.projectPath, "\\pubspec.yaml");
+    return path.join(this.projectPath, "pubspec.yaml");
   }
 
   startPubspec(this: PubspecLib) {
@@ -65,7 +65,7 @@ export class PubspecLib {
       dependencies: this.dependencies,
       dev_dependencies: this.devDependencies,
       flutter: this.flutter,
-      scripts: this.scripts
+      scripts: this.scripts,
     };
 
     let yamlStr = yaml.safeDump(newPubspecData);

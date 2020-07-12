@@ -51,25 +51,28 @@ export class Core {
         let coreTemplate = new CoreTemplate();
         // Create main
         fs.writeFileSync(
-          `${this.corePath}\\page_state.dart`,
+          path.join(this.corePath, "page_state.dart"),
           coreTemplate.getPageStateTemplate()
         );
 
         // Create main
-        fs.writeFileSync(`${this.libPath}\\main.dart`, getMainTemplate());
+        fs.writeFileSync(
+          path.join(this.libPath, "main.dart"),
+          getMainTemplate()
+        );
 
         // Create App Module
         let appModule = new AppModuleTemplate();
         fs.writeFileSync(
-          `${this.uiPath}\\app_module.dart`,
+          path.join(this.uiPath, "app_module.dart"),
           appModule.getAppModuleTemplate()
         );
         fs.writeFileSync(
-          `${this.uiPath}\\app_presenter.dart`,
+          path.join(this.uiPath, "app_presenter.dart"),
           appModule.getAppPresenterTemplate()
         );
         fs.writeFileSync(
-          `${this.uiPath}\\app_widget.dart`,
+          path.join(this.uiPath, "app_widget.dart"),
           appModule.getAppWidgetTemplate()
         );
 
@@ -96,18 +99,19 @@ export class Core {
     );
     let moduleNameSnakeCase = snakeCase(moduleName);
 
-    this.createDir(`${moduleBasePath}\\${moduleNameSnakeCase}`);
+    let modulePath = path.join(moduleBasePath, moduleNameSnakeCase);
+    this.createDir(modulePath);
 
     fs.writeFileSync(
-      `${moduleBasePath}\\${moduleNameSnakeCase}\\${moduleNameSnakeCase}_module.dart`,
+      path.join(moduleBasePath, `${moduleNameSnakeCase}_module.dart`),
       homeModule.getModuleTemplate()
     );
     fs.writeFileSync(
-      `${moduleBasePath}\\${moduleNameSnakeCase}\\${moduleNameSnakeCase}_presenter.dart`,
+      path.join(moduleBasePath, `${moduleNameSnakeCase}_presenter.dart`),
       homeModule.getPresenterTemplate()
     );
     fs.writeFileSync(
-      `${moduleBasePath}\\${moduleNameSnakeCase}\\${moduleNameSnakeCase}_page.dart`,
+      path.join(moduleBasePath, `${moduleNameSnakeCase}_page.dart`),
       homeModule.getPageTemplate()
     );
   }
@@ -161,7 +165,7 @@ export class Core {
 
   createAllSubDirs(subDirs: string[]) {
     let path = this.modulesPath;
-    subDirs.forEach(subDir => {
+    subDirs.forEach((subDir) => {
       path += `\\${snakeCase(subDir)}`;
       this.createDir(path);
     });
@@ -185,51 +189,51 @@ export class Core {
   }
 
   get libPath(): string {
-    return path.join(this.projectPath, "\\lib");
+    return path.join(this.projectPath, "lib");
   }
 
   get buildPath(): string {
-    return path.join(this.projectPath, "\\build");
+    return path.join(this.projectPath, "build");
   }
 
   get pubspecPath(): string {
-    return path.join(this.projectPath, "\\pubspec.yaml");
+    return path.join(this.projectPath, "pubspec.yaml");
   }
 
   get uiPath(): string {
-    return path.join(this.libPath, "\\ui");
+    return path.join(this.libPath, "ui");
   }
   get modulesPath(): string {
-    return path.join(this.uiPath, "\\modules");
+    return path.join(this.uiPath, "modules");
   }
 
   get corePath(): string {
-    return path.join(this.libPath, "\\core");
+    return path.join(this.libPath, "core");
   }
 
   get domainPath(): string {
-    return path.join(this.libPath, "\\domain");
+    return path.join(this.libPath, "domain");
   }
   get controllersPath(): string {
-    return path.join(this.domainPath, "\\controllers");
+    return path.join(this.domainPath, "controllers");
   }
   get repositoriesDomainPath(): string {
-    return path.join(this.domainPath, "\\repositories");
+    return path.join(this.domainPath, "repositories");
   }
   get entitiesPath(): string {
-    return path.join(this.domainPath, "\\entities");
+    return path.join(this.domainPath, "entities");
   }
 
   get dataPath(): string {
-    return path.join(this.libPath, "\\data");
+    return path.join(this.libPath, "data");
   }
   get datasourcesPath(): string {
-    return path.join(this.dataPath, "\\datasources");
+    return path.join(this.dataPath, "datasources");
   }
   get repositoriesDataPath(): string {
-    return path.join(this.dataPath, "\\repositories");
+    return path.join(this.dataPath, "repositories");
   }
   get dtosPath(): string {
-    return path.join(this.dataPath, "\\dtos");
+    return path.join(this.dataPath, "dtos");
   }
 }
