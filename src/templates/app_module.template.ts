@@ -9,15 +9,15 @@ class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-    navigatorKey: Modular.navigatorKey,
-    title: 'Flutter Project',
-    theme: ThemeData(
-        primarySwatch: Colors.blue,
-    ),
-    initialRoute: '/',
-    onGenerateRoute: Modular.generateRoute,
+      navigatorKey: Modular.navigatorKey,
+      title: 'Flutter Project',
+      theme: ThemeData(
+          primarySwatch: Colors.blue,
+      ),
+      initialRoute: '/',
+      onGenerateRoute: Modular.generateRoute,
     );
- }
+  }
 } 
 
 main() => runApp(ModularApp(module: AppModule()));
@@ -33,20 +33,20 @@ import 'app_widget.dart';
 import 'modules/home/home_module.dart';
 
 class AppModule extends MainModule {
-@override
-List<Bind> get binds => [
+  @override
+  List<Bind> get binds => [
         Bind((i) => AppPresenter()),
-    ];
+      ];
 
-@override
-List<Router> get routers => [
+  @override
+  List<Router> get routers => [
         Router(HomeModule.route, module: HomeModule()),
-    ];
+      ];
 
-@override
-Widget get bootstrap => AppWidget();
+  @override
+  Widget get bootstrap => AppWidget();
 
-static Inject get to => Inject<AppModule>.of();
+  static Inject get to => Inject<AppModule>.of();
 }
 `;
   }
