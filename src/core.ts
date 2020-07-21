@@ -67,7 +67,7 @@ export class Core {
         // Create Home Module
         this.createModule("home", "/");
       } catch (error) {
-        let debug = 0;
+        vscode.window.showErrorMessage(error);
       }
     } else {
       vscode.window.showErrorMessage("Invalid project");

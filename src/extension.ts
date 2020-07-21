@@ -7,7 +7,7 @@ export function activate(context: vscode.ExtensionContext) {
     async () => {
       const promptConfirmation: vscode.QuickPickOptions = {
         placeHolder: "Confirm erase all old project data?",
-        canPickMany: false
+        canPickMany: false,
       };
 
       let option: string | undefined = await vscode.window.showQuickPick(
@@ -44,7 +44,7 @@ export function activate(context: vscode.ExtensionContext) {
       const options: vscode.InputBoxOptions = {
         prompt: "Module Name",
         value: valuePlaceholder,
-        valueSelection: [moduleRelativePath.length, valuePlaceholder.length]
+        valueSelection: [moduleRelativePath.length, valuePlaceholder.length],
       };
       let modulePath = await vscode.window.showInputBox(options);
 
@@ -101,7 +101,7 @@ export function activate(context: vscode.ExtensionContext) {
         // ---------------
         const promptConfirmation: vscode.QuickPickOptions = {
           placeHolder: "Wich script?",
-          canPickMany: false
+          canPickMany: false,
         };
 
         let option: string | undefined = await vscode.window.showQuickPick(
