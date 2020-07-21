@@ -62,20 +62,7 @@ export class Core {
           getMainTemplate()
         );
 
-        // Create App Module
-        let appModule = new AppModuleTemplate();
-        fs.writeFileSync(
-          path.join(this.uiPath, "app_module.dart"),
-          appModule.getAppModuleTemplate()
-        );
-        fs.writeFileSync(
-          path.join(this.uiPath, "app_presenter.dart"),
-          appModule.getAppPresenterTemplate()
-        );
-        fs.writeFileSync(
-          path.join(this.uiPath, "app_widget.dart"),
-          appModule.getAppWidgetTemplate()
-        );
+        this.createAppModule();
 
         // Create Home Module
         this.createModule("home", "/");
@@ -87,13 +74,30 @@ export class Core {
     }
   }
 
+  createAppModule(this: Core) {
+    // Create App Module
+    let appModule = new AppModuleTemplate();
+    fs.writeFileSync(
+      path.join(this.uiPath, "app_module.dart"),
+      appModule.getAppModuleTemplate()
+    );
+    fs.writeFileSync(
+      path.join(this.uiPath, "app_presenter.dart"),
+      appModule.getAppPresenterTemplate()
+    );
+    fs.writeFileSync(
+      path.join(this.uiPath, "app_widget.dart"),
+      appModule.getAppWidgetTemplate()
+    );
+  }
+
   createModule(
     this: Core,
     moduleName: string,
     moduleRoute: string = `/${pascalCase(moduleName)}`,
     moduleBasePath: string = this.modulesPath
   ) {
-    let homeModule = new FullModuleTemplate(
+    let fullModule = new FullModuleTemplate(
       this.pubspecLib.projectName,
       moduleName,
       moduleRoute
@@ -104,15 +108,15 @@ export class Core {
 
     fs.writeFileSync(
       path.join(modulePath, `${moduleNameSnakeCase}_module.dart`),
-      homeModule.getModuleTemplate()
+      fullModule.getModuleTemplate()
     );
     fs.writeFileSync(
       path.join(modulePath, `${moduleNameSnakeCase}_presenter.dart`),
-      homeModule.getPresenterTemplate()
+      fullModule.getPresenterTemplate()
     );
     fs.writeFileSync(
       path.join(modulePath, `${moduleNameSnakeCase}_page.dart`),
-      homeModule.getPageTemplate()
+      fullModule.getPageTemplate()
     );
   }
 
@@ -164,10 +168,10 @@ export class Core {
   }
 
   createAllSubDirs(subDirs: string[]) {
-    let dirPath = this.modulesPath;
+    let modulePath = this.modulesPath;
     subDirs.forEach((subDir) => {
-      dirPath = path.join(dirPath, snakeCase(subDir));
-      this.createDir(dirPath);
+      modulePath = path.join(modulePath, snakeCase(subDir));
+      this.createDir(modulePath);
     });
   }
 
