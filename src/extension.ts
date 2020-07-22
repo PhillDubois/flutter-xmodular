@@ -1,5 +1,6 @@
 import * as vscode from "vscode";
 import { Core } from "./core";
+import * as path from "path";
 
 export function activate(context: vscode.ExtensionContext) {
   let initializeProject = vscode.commands.registerCommand(
@@ -32,7 +33,7 @@ export function activate(context: vscode.ExtensionContext) {
         console.log(folderUri.fsPath);
         if (folderUri.fsPath.length > core.modulesPath.length) {
           moduleRelativePath =
-            folderUri.fsPath.substr(core.modulesPath.length + 1) + "\\";
+            folderUri.fsPath.substr(core.modulesPath.length + 1) + "/";
         }
       } else {
         console.log("No folder selected");
@@ -54,12 +55,12 @@ export function activate(context: vscode.ExtensionContext) {
         // remove possible spaces
         modulePath = modulePath.trim();
         // replace slash by back-slash
-        modulePath.replace("/", "\\");
+        modulePath.replace("\\", "/");
         // remove first slash to avoid errors
-        if (modulePath.charAt(0) === "\\") {
+        if (modulePath.charAt(0) === "/") {
           modulePath = modulePath.substr(1);
         }
-        let splitedPath = modulePath.split("\\");
+        let splitedPath = modulePath.split("/");
         // if length > 0, path will be like folder_n\...\module_name
         if (splitedPath.length > 0) {
           // create subfolders if they don't exist
@@ -75,7 +76,7 @@ export function activate(context: vscode.ExtensionContext) {
           core.createModule(
             moduleName,
             `/${moduleName}`,
-            `${core.modulesPath}\\${moduleBasePath}`
+            path.join(core.modulesPath, moduleBasePath)
           );
         }
         // create modules in /modules
