@@ -61,8 +61,8 @@ class ${this.moduleNamePascal}Module extends ChildModule {
       ];
 
   @override
-  List<Router> get routers => [
-        Router(${this.moduleNamePascal}Page.route, child: (_, args) => ${this.moduleNamePascal}Page()),
+  List<ModularRouter> get routers => [
+        ModularRouter(${this.moduleNamePascal}Page.route, child: (_, args) => ${this.moduleNamePascal}Page()),
       ];
 
   static Inject get to => Inject<${this.moduleNamePascal}Module>.of();

@@ -5,18 +5,19 @@ import * as yaml from "js-yaml";
 
 export class PubspecLib {
   private dependencies = {
-    dio: "^3.0.9",
-    flutter_mobx: "^1.1.0",
+    dio: "^3.0.10",
+    flutter_mobx: "^1.0.1",
     mobx: "^1.1.1",
-    flutter_modular: "^1.0.0",
+    flutter_modular: "^2.0.0+1",
     flutter: { sdk: "flutter" },
   };
 
   private devDependencies = {
     mockito: "^4.1.1",
     mobx_codegen: "^1.0.3",
-    build_runner: "^1.8.0",
-    freezed: "^0.10.4",
+    build_runner: "^1.10.1",
+    freezed: "^0.11.6",
+    json_serializable: "^3.4.1",
     flutter_test: { sdk: "flutter" },
   };
 
